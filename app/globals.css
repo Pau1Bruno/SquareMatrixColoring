@@ -2,26 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-bg: #f9fafb;            /* Softer background */
+    --color-text: #333333;          /* Darker, easy-to-read text */
+    --color-header: #4a5ca3;        /* Calming blue header */
+    --color-header-text: #ffffff;
+    --color-footer: #4a5ca3;
+    --color-footer-text: #ffffff;
+    --color-button: #ff7849;        /* Vibrant button color */
+    --color-typography: #ea4335;
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bg: #1f2937;            /* Deep gray background */
+      --color-text: #e5e7eb;          /* Light text for contrast */
+      --color-header: #334155;        /* Muted, darker header */
+      --color-header-text: #ffffff;
+      --color-footer: #334155;
+      --color-footer-text: #ffffff;
+      --color-button: #e84a33;        /* Muted orange button */
+      --color-typography: #ff9f43;
+    }
+  }
+
+  :root[theme="dark"] {
+    --color-bg: #1f2937;            /* Deep gray background */
+    --color-text: #e5e7eb;          /* Light text for contrast */
+    --color-header: #334155;        /* Muted, darker header */
+    --color-header-text: #ffffff;
+    --color-footer: #334155;
+    --color-footer-text: #ffffff;
+    --color-button: #e84a33;        /* Muted orange button */
+    --color-typography: #ff9f43;
+  }
+
+  :root[theme="light"] {
+    --color-bg: #f9fafb;            /* Softer background */
+    --color-text: #333333;          /* Darker, easy-to-read text */
+    --color-header: #4a5ca3;        /* Calming blue header */
+    --color-header-text: #ffffff;
+    --color-footer: #4a5ca3;
+    --color-footer-text: #ffffff;
+    --color-button: #ff7849;        /* Vibrant button color */
+    --color-typography: #ea4335;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+html,
+body {
+  min-height: 100vh;
+  height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
