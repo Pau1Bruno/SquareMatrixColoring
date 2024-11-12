@@ -6,12 +6,17 @@ import { IconButton } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
 export const ThemeSwitcher = () => {
-    const [theme, setTheme] = useState<'dark' | 'light'>(
-        (localStorage.getItem('theme') as 'dark' | 'light') ?? 'dark'
-    );
+    const [theme, setTheme] = useState<'dark' | 'light' | null>(null);
 
     useEffect(() => {
-        if (typeof window === 'undefined') return;
+        const theme = localStorage.getItem('theme') as 'dark' | 'light';
+        if (!theme) return;
+
+        setTheme(theme);
+    }, []);
+
+    useEffect(() => {
+        if (typeof window === 'undefined' || !theme) return;
 
         document.querySelector('html')?.setAttribute('theme', theme);
         localStorage.setItem('theme', theme);
@@ -22,11 +27,11 @@ export const ThemeSwitcher = () => {
     }
 
     return (
-        <IconButton onClick={changeTheme} color="primary">
+        <IconButton onClick={changeTheme}>
             {theme !== 'dark' ? (
-                <DarkModeIcon color="inherit" />
+                <DarkModeIcon />
             ) : (
-                <LightModeIcon color="inherit" />
+                <LightModeIcon />
             )}
         </IconButton>
     );
