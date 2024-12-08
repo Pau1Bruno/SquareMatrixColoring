@@ -3,6 +3,7 @@ import { ThemeProvider } from '@mui/system';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import theme from '@/theme';
@@ -29,17 +30,21 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html suppressHydrationWarning lang="en">
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col`}
             >
-                <AppRouterCacheProvider>
-                    <ThemeProvider theme={theme}>
-                        <Header />
-                        <main className="grow flex flex-col">{children}</main>
-                        <Footer />
-                    </ThemeProvider>
-                </AppRouterCacheProvider>
+                <NextThemesProvider attribute="data-theme">
+                    <AppRouterCacheProvider>
+                        <ThemeProvider theme={theme}>
+                            <Header />
+                            <main className="grow flex flex-col">
+                                {children}
+                            </main>
+                            <Footer />
+                        </ThemeProvider>
+                    </AppRouterCacheProvider>
+                </NextThemesProvider>
             </body>
         </html>
     );

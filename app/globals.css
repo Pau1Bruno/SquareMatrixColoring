@@ -27,7 +27,7 @@
     }
   }
 
-  :root[theme="dark"] {
+  :root[data-theme="dark"] {
     --color-bg: #1f2937;            /* Deep gray background */
     --color-text: #e5e7eb;          /* Light text for contrast */
     --color-header: #334155;        /* Muted, darker header */
@@ -38,7 +38,7 @@
     --color-typography: #ff9f43;
   }
 
-  :root[theme="light"] {
+  :root[data-theme="light"] {
     --color-bg: #f9fafb;            /* Softer background */
     --color-text: #333333;          /* Darker, easy-to-read text */
     --color-header: #4a5ca3;        /* Calming blue header */

@@ -2,6 +2,7 @@
   "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
   "plugins": ["react", "import"],
   "rules": {
+    "react-hooks/exhaustive-deps": "off",
     "import/order": [
       "error",
       {

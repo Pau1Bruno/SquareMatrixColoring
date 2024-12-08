@@ -3,36 +3,29 @@
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { IconButton } from '@mui/material';
+import { useTheme } from 'next-themes';
 import React, { useEffect, useState } from 'react';
 
 export const ThemeSwitcher = () => {
-    const [theme, setTheme] = useState<'dark' | 'light' | null>(null);
+    const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState<boolean>(false);
 
     useEffect(() => {
-        const theme = localStorage.getItem('theme') as 'dark' | 'light';
-        if (!theme) return;
-
-        setTheme(theme);
+        setMounted(true);
+        setTheme(
+            window.document
+                .querySelector('html')
+                ?.getAttribute('data-theme') as string
+        );
     }, []);
 
-    useEffect(() => {
-        if (typeof window === 'undefined' || !theme) return;
+    const changeTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
 
-        document.querySelector('html')?.setAttribute('theme', theme);
-        localStorage.setItem('theme', theme);
-    }, [theme]);
-
-    function changeTheme() {
-        setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
-    }
+    if (!mounted) return null;
 
     return (
         <IconButton onClick={changeTheme}>
-            {theme !== 'dark' ? (
-                <DarkModeIcon />
-            ) : (
-                <LightModeIcon />
-            )}
+            {theme === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton>
     );
 };
