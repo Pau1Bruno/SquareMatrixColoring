@@ -38,7 +38,7 @@ export default function RootLayout({
                     <AppRouterCacheProvider>
                         <ThemeProvider theme={theme}>
                             <Header />
-                            <main className="grow flex flex-col">
+                            <main className="grow flex flex-col font-[family-name:var(--font-geist-sans)]">
                                 {children}
                             </main>
                             <Footer />
