@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import React from 'react';
 import { ThemeSwitcher } from '@/components';
 
-const Header = () => {
+export const Header = () => {
     return (
         <header className="min-h-14 bg-header px-5">
             <Box className="h-full flex justify-end items-center">
@@ -13,5 +13,3 @@ const Header = () => {
         </header>
     );
 };
-
-export default Header;

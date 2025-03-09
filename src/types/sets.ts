@@ -1,7 +1,7 @@
 export interface realmB {
     B1: number[];
     B2: number[];
-    omega: any;
+    omega: unknown;
     dSet: dSet[];
 }
 

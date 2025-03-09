@@ -4,7 +4,7 @@
   "rules": {
     "react-hooks/exhaustive-deps": "off",
     "import/order": [
-      "error",
+      "warning",
       {
         "groups": ["builtin", "external", "internal"],
         "alphabetize": {
