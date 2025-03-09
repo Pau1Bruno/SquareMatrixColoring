@@ -3,9 +3,12 @@ import type { Config } from 'tailwindcss';
 const config: Config = {
     darkMode: ['class', '[data-theme="dark"]'],
     content: [
-        './pages/**/*.{js,ts,jsx,tsx,mdx}',
-        './components/**/*.{js,ts,jsx,tsx,mdx}',
-        './app/**/*.{js,ts,jsx,tsx,mdx}',
+        "./src/**/*.{js,ts,jsx,tsx}"
+    ],
+    safelist: [
+        { pattern: /grid-cols-\d+/ },      // чтобы работали динамические grid-cols-XX
+        { pattern: /w-\[\d+px\]/ },       // чтобы работали классы вида w-[50px], w-[100px] и т.д.
+        { pattern: /h-\[\d+px\]/ },
     ],
     theme: {
         extend: {
