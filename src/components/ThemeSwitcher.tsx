@@ -12,11 +12,6 @@ export const ThemeSwitcher = () => {
 
     useEffect(() => {
         setMounted(true);
-        setTheme(
-            window.document
-                .querySelector('html')
-                ?.getAttribute('data-theme') as string
-        );
     }, []);
 
     const changeTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
