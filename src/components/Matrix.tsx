@@ -155,10 +155,10 @@ const renderResult = (result: MatrixResult, idx: number) => {
             </Typography>
             {renderColoredGraph(result.dsatur.colors)}
 
-            <Typography variant="body1" sx={{ mt: 2 }}>
-                <strong>Genetic:</strong> Цветов: {result.genetic.colorCount}
-            </Typography>
-            {renderColoredGraph(result.genetic.colors)}
+            {/*<Typography variant="body1" sx={{ mt: 2 }}>*/}
+            {/*    <strong>Genetic:</strong> Цветов: {result.genetic.colorCount}*/}
+            {/*</Typography>*/}
+            {/*{renderColoredGraph(result.genetic.colors)}*/}
         </Box>
     );
 };
