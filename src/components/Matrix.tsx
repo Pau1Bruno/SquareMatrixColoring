@@ -253,14 +253,14 @@ export const Matrix = ({ setIsCalculated }: IMatrixProps) => {
                     )}
             </Box>
 
-            <Box className="flex mt-4 gap-4">
-                <Button variant="contained" onClick={handlePasteFirst}>
-                    Пример №1
-                </Button>
-                <Button variant="contained" onClick={handlePasteSecond}>
-                    Пример №2
-                </Button>
-            </Box>
+            {/*<Box className="flex mt-4 gap-4">*/}
+            {/*    <Button variant="contained" onClick={handlePasteFirst}>*/}
+            {/*        Пример №1*/}
+            {/*    </Button>*/}
+            {/*    <Button variant="contained" onClick={handlePasteSecond}>*/}
+            {/*        Пример №2*/}
+            {/*    </Button>*/}
+            {/*</Box>*/}
             <Box className="flex mt-4 gap-4">
                 <Button variant="contained" color="error" onClick={handleClear}>
                     Очистить

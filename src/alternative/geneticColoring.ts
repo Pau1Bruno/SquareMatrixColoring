@@ -1,9 +1,8 @@
-// Интерфейс результата раскраски графа
-export interface GraphColoringResult {
-    colors: number[];              // Цвет для каждой вершины
-    colorCount: number;            // Общее число использованных цветов
-    conflicts?: [number, number][];// Список конфликтующих пар вершин (если есть)
-    isValid: boolean;              // Признак корректности раскраски (нет конфликтов)
+interface GraphColoringResult {
+    colors: number[];
+    colorCount: number;
+    conflicts?: [number, number][];
+    isValid: boolean;
 }
 
 /**
@@ -33,8 +32,6 @@ export function evaluateFitness(matrix: number[][], chromosome: number[]): { fit
 /**
  * Создает случайную хромосому – раскраску графа.
  * Для каждой вершины выбирается случайный цвет из диапазона 0..n-1.
- *
- * @param n Число вершин графа
  */
 export function randomChromosome(n: number): number[] {
     const chromosome: number[] = new Array(n);
@@ -44,14 +41,6 @@ export function randomChromosome(n: number): number[] {
     return chromosome;
 }
 
-/**
- * Выполняет турнирный отбор среди особей.
- * Из двух случайно выбранных индивидов возвращает индекс того,
- * у которого фитнес меньше (то есть качество раскраски выше).
- *
- * @param fitnessData Массив оценок фитнеса для популяции
- * @param populationSize Размер популяции
- */
 export function tournamentSelect(fitnessData: { fitness: number }[], populationSize: number): number {
     const i1 = Math.floor(Math.random() * populationSize);
     const i2 = Math.floor(Math.random() * populationSize);
@@ -73,7 +62,6 @@ export function crossover(parent1: number[], parent2: number[]): [number[], numb
 /**
  * Применяет мутацию к хромосоме.
  * Для каждой вершины с вероятностью mutationRate цвет изменяется на случайное значение.
- *
  */
 export function mutate(chromosome: number[], mutationRate: number, n: number): number[] {
     const mutated = chromosome.slice();
@@ -85,17 +73,6 @@ export function mutate(chromosome: number[], mutationRate: number, n: number): n
     return mutated;
 }
 
-/**
- * Основная функция генетического алгоритма раскраски графа.
- *
- * @param matrix Матрица смежности графа
- * @param params Параметры алгоритма:
- *   - populationSize: размер популяции (по умолчанию 50)
- *   - generations: число поколений (по умолчанию 100)
- *   - mutationRate: вероятность мутации (по умолчанию 0.1)
- * @param verbose Если true, выводит лог ключевых этапов алгоритма
- * @returns GraphColoringResult – результат раскраски графа
- */
 export const geneticColoring = (
     matrix: number[][],
     params: {

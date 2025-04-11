@@ -1,8 +1,8 @@
 interface GraphColoringResult {
-    colors: number[]; // цвет для каждой вершины
-    colorCount: number; // общее число использованных цветов
-    conflicts?: [number, number][]; // список конфликтующих пар вершин (если есть)
-    isValid: boolean; // признак правильности раскраски (нет конфликтов)
+    colors: number[];
+    colorCount: number;
+    conflicts?: [number, number][];
+    isValid: boolean;
 }
 
 export const dsaturColoring = (
@@ -10,10 +10,10 @@ export const dsaturColoring = (
     verbose: boolean = false
 ): GraphColoringResult => {
     const n = matrix.length;
-    const colors: number[] = Array(n).fill(-1); // цвета вершин (-1 = нераскрашена)
-    const degree: number[] = Array(n).fill(0); // степень (число соседей) каждой вершины
-    const saturation: number[] = Array(n).fill(0); // степень насыщенности (разнообразие цветов соседей)
-    const neighborColors: Array<Set<number>> = Array(n); // множество цветов соседей для каждой вершины
+    const colors: number[] = Array(n).fill(-1);
+    const degree: number[] = Array(n).fill(0);
+    const saturation: number[] = Array(n).fill(0);
+    const neighborColors: Array<Set<number>> = Array(n);
     for (let i = 0; i < n; i++) {
         neighborColors[i] = new Set<number>();
         // вычисляем степень вершины i
@@ -71,7 +71,6 @@ export const dsaturColoring = (
         }
     }
 
-    // Проверка корректности раскраски
     const conflictEdges: [number, number][] = [];
     for (let i = 0; i < n; i++) {
         for (let j = i + 1; j < n; j++) {
